@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const YOUTUBE_API_KEY = 'AIzaSyDKuKUZOniDxTd0RhrrDBQaylBCs3lHdY8';
+    const YOUTUBE_API_KEY = '${{ secrets.API_KEY }}';
 
     const gridView = document.getElementById('gridView');
     const videoDetail = document.getElementById('videoDetail');
