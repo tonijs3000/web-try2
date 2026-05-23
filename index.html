@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/utils/logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../main.css">
+    <title>SIMONS DOVEIKO</title>
+</head>
+<body>
+<main>
+    <nav class="header">
+        <a href="https://www.instagram.com/byysimon/" target="_blank" class="instagram-link" aria-label="Instagram">
+            <img src="/utils/instagram.png" alt="Instagram" class="instagram-icon">
+        </a>
+
+        <div class="nav">
+            <div class="menu">
+                <button class="active" data-section="main">MAIN</button>
+                <button data-section="about">ABOUT</button>
+                <button data-section="info">INFO</button>
+            </div>
+        </div>
+
+        <div class="logo-container">
+            <a href="index.html" class="logo-2" aria-label="SIMONS DOVEIKO">
+                <img src="/utils/simons-doveiko-logo.jpg" alt="SIMONS DOVEIKO" class="logo-img">
+            </a>
+        </div>
+    </nav>
+
+    <div class="container" id="gridView">
+        <button class="grid-item letterbox-crop" data-video-id="PZE_0YXiQcg">
+            <img src="https://img.youtube.com/vi/PZE_0YXiQcg/maxresdefault.jpg" alt="Video 1">
+            <div class="overlay"><h3></h3><p></p></div>
+        </button>
+
+        <button class="grid-item" data-video-id="xQXDG3bpUEU">
+            <img src="https://img.youtube.com/vi/xQXDG3bpUEU/maxresdefault.jpg" alt="Video 2">
+            <div class="overlay"><h3></h3><p></p></div>
+        </button>
+
+        <button class="grid-item" data-video-id="PeBxCmebIOk">
+            <img src="https://img.youtube.com/vi/PeBxCmebIOk/maxresdefault.jpg" alt="Video 3">
+            <div class="overlay"><h3></h3><p></p></div>
+        </button>
+
+        <button class="grid-item" data-video-id="foTU6Q5upps">
+            <img src="https://img.youtube.com/vi/foTU6Q5upps/maxresdefault.jpg" alt="Video 4">
+            <div class="overlay"><h3></h3><p></p></div>
+        </button>
+
+        <button class="grid-item letterbox-crop" data-video-id="1S3d-6mwUfM">
+            <img src="https://img.youtube.com/vi/1S3d-6mwUfM/maxresdefault.jpg" alt="Video 5">
+            <div class="overlay"><h3></h3><p></p></div>
+        </button>
+
+        <div class="grid-placeholder">
+            <img src="/utils/comp3.gif" alt="Logo animation">
+            <div class="placeholder-overlay">
+                <span>More to come...</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="video-detail" id="videoDetail" style="display: none;">
+        <button class="back-btn" id="backBtn">&#8592;</button>
+
+        <div class="video-wrapper">
+            <div class="video-container">
+                <iframe id="videoPlayer" width="100%" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+            </div>
+
+            <div class="video-title-box">
+                <h2 id="videoTitle"></h2>
+                <p id="videoDesc"></p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="../main.js"></script>
+</body>
+</html>

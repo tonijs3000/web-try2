@@ -1,0 +1,616 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    background-color: white;
+    min-height: 100vh;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 30px 0;
+    gap: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.instagram-link {
+    position: absolute;
+    top: 16px;
+    right: 30px;
+    color: #000;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.instagram-link:hover {
+    opacity: 0.5;
+}
+
+.instagram-icon {
+    width: 36px;
+    height: 36px;
+    display: block;
+}
+
+.logo-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 6px;
+    margin-bottom: 14px;
+    perspective: 800px;
+}
+
+.logo-2 {
+    display: inline-block;
+    line-height: 0;
+    text-decoration: none;
+    transform-style: preserve-3d;
+}
+
+.logo-img {
+    display: block;
+    width: 315px;
+    height: auto;
+    transform: scaleY(0.8) scaleX(0.88) rotateY(0deg);
+    transform-origin: center center;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.nav {
+    width: 100%;
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.menu {
+    display: flex;
+    gap: 18px;
+    border: 1px solid #000;
+    padding: 1px 42px;
+}
+
+.menu button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: #000;
+}
+
+.menu button.active {
+    font-weight: 700;
+}
+
+.container {
+    --grid-gap: 3px;
+
+    padding: 20px 30px 20px;
+    margin: 0 auto;
+    max-width: 1350px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--grid-gap);
+}
+
+.grid-item,
+.grid-placeholder {
+    aspect-ratio: 16 / 13;
+    background-color: #d9d9d9;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.grid-item {
+    cursor: pointer;
+    transition:
+        opacity 0.3s,
+        box-shadow 0.35s ease;
+}
+
+.grid-item:hover,
+.grid-item.is-touch-preview {
+    z-index: 10;
+    box-shadow:
+        0 0 0 var(--grid-gap) #751a1f,
+        0 0 16px rgba(117, 26, 31, 0.38);
+}
+
+.grid-placeholder {
+    cursor: default;
+    opacity: 1;
+    background: transparent;
+}
+
+.grid-placeholder::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: black;
+    opacity: 0;
+    transition: opacity 1.6s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.grid-placeholder:hover::before {
+    opacity: 0.55;
+}
+
+.grid-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: none;
+    opacity: 1;
+    filter: none;
+}
+
+.placeholder-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 2.4s ease;
+    pointer-events: none;
+    text-align: center;
+}
+
+.grid-placeholder:hover .placeholder-overlay {
+    opacity: 1;
+}
+
+.placeholder-overlay span {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.4s ease;
+}
+
+.letterbox-crop img {
+    transform: scale(1.35);
+}
+
+.grid-item:hover img,
+.grid-item.is-touch-preview img {
+    filter: brightness(0.4);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+    text-align: center;
+}
+
+.grid-item:hover .overlay,
+.grid-item.is-touch-preview .overlay {
+    opacity: 1;
+}
+
+.overlay h3 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.overlay p {
+    display: none;
+}
+
+.video-detail {
+    position: static;
+}
+
+.back-btn {
+    position: fixed;
+    top: 20px;
+    left: 30px;
+    background: none;
+    color: #000;
+    border: none;
+    padding: 0;
+    font-size: 32px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    font-weight: 300;
+    line-height: 1;
+    z-index: 1001;
+}
+
+.back-btn:hover {
+    opacity: 0.5;
+}
+
+.about-corner-logo {
+    position: fixed;
+    top: 20px;
+    left: 30px;
+    width: 58px;
+    height: 58px;
+    z-index: 1001;
+    pointer-events: none;
+}
+
+.about-corner-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.video-wrapper {
+    max-width: 900px;
+    margin: 10px auto 60px;
+    padding: 0 30px;
+}
+
+.video-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+.video-title-box {
+    margin-top: 16px;
+    padding: 16px 24px;
+    border: 1px solid #d0d0d0;
+    min-height: 0;
+}
+
+.video-title-box h2 {
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #000;
+    text-align: left;
+}
+
+.video-title-box p {
+    display: none;
+}
+
+.content-box-wrapper {
+    padding: 20px 30px;
+    min-width: 820px;
+    margin: 0 auto;
+}
+
+.content-box {
+    background-color: #f0f0f0;
+    border: 1px solid #d0d0d0;
+    padding: 60px 50px 40px 50px;
+    text-align: center;
+}
+
+.content-text {
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    line-height: 1.8;
+    color: #000;
+}
+
+.content-text a {
+    color: #000;
+    text-decoration: none;
+    letter-spacing: 3px;
+}
+
+.content-text a:hover {
+    opacity: 0.5;
+}
+
+.content-subtext {
+    margin-top: 30px;
+}
+
+.info-wrapper {
+    padding: 20px 30px;
+    max-width: 820px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.info-box {
+    background-color: #f0f0f0;
+    border: 1px solid #d0d0d0;
+    padding: 17px 50px 50px;
+    min-height: 160px;
+}
+
+.info-text {
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-size: 21px;
+    font-weight: 310;
+    letter-spacing: 4px;
+    line-height: 1.8;
+    color: #000;
+    text-align: center;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.info-text a {
+    color: #000;
+    text-decoration: none;
+    letter-spacing: 4px;
+}
+
+.info-text a:hover {
+    opacity: 0.5;
+}
+
+.about-footer {
+    margin-top: auto;
+}
+
+.about-footer-divider {
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+}
+
+.about-footer-video {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: black;
+    pointer-events: none;
+}
+
+.about-footer-video iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%) scale(1.25);
+    border: 0;
+}
+
+@media (max-width: 768px) {
+    .container {
+        --grid-gap: 8px;
+
+        padding: 20px 30px 20px;
+        gap: var(--grid-gap);
+        grid-template-columns: 1fr;
+        max-width: 700px;
+    }
+
+    .grid-item,
+    .grid-placeholder {
+        aspect-ratio: 16 / 9;
+    }
+
+    .header {
+        padding: 12px 14px 0;
+    }
+
+    .instagram-link {
+        top: 10px;
+        right: 12px;
+    }
+
+    .instagram-icon {
+        width: 28px;
+        height: 28px;
+        max-height: none;
+    }
+
+    .menu {
+        gap: 14px;
+        padding: 1px 28px;
+    }
+
+    .menu button {
+        font-size: 13px;
+        letter-spacing: 2.4px;
+    }
+
+    .logo-img {
+        width: 315px;
+    }
+
+    .logo-container {
+        margin-bottom: 14px;
+    }
+
+    .content-box-wrapper {
+        min-width: 0;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .content-box {
+        padding: 30px 24px;
+    }
+
+    .content-text {
+        font-size: 13px;
+        letter-spacing: 2px;
+    }
+
+    .info-text {
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+
+    .video-title-box {
+        min-height: 0;
+    }
+
+    .video-title-box h2 {
+        font-size: 16px;
+        letter-spacing: 2px;
+    }
+
+    .video-wrapper {
+        padding: 0 16px;
+    }
+
+    .video-detail {
+        padding-top: 18px;
+    }
+
+    .back-btn {
+        position: absolute;
+        left: 16px;
+        top: 78px;
+        font-size: 30px;
+    }
+
+    .about-corner-logo {
+        top: 10px;
+        left: 12px;
+        width: 28px;
+        height: 28px;
+    }
+
+    .about-footer-video {
+        height: 140px;
+    }
+
+    .about-footer-video iframe {
+        transform: translate(-50%, -50%) scale(1.35);
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 10px 12px 0;
+    }
+
+    .instagram-link {
+        top: 8px;
+        right: 10px;
+    }
+
+    .instagram-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .menu {
+        gap: 11px;
+        padding: 1px 20px;
+    }
+
+    .menu button {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+
+    .logo-img {
+        width: 270px;
+    }
+
+    .logo-container {
+        margin-top: 4px;
+        margin-bottom: 12px;
+    }
+
+    .content-box {
+        padding: 24px 16px;
+    }
+
+    .content-text {
+        font-size: 12px;
+        letter-spacing: 1.5px;
+    }
+
+    .info-text {
+        font-size: 13px;
+        letter-spacing: 1.5px;
+    }
+
+    .video-title-box {
+        min-height: 0;
+    }
+
+    .video-title-box h2 {
+        font-size: 14px;
+        letter-spacing: 1.5px;
+    }
+
+    .video-detail {
+        padding-top: 14px;
+    }
+
+    .back-btn {
+        top: 68px;
+        left: 16px;
+        font-size: 28px;
+    }
+
+    .about-corner-logo {
+        top: 8px;
+        left: 10px;
+        width: 24px;
+        height: 24px;
+    }
+}
